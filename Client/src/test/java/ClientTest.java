@@ -1,11 +1,16 @@
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 
 import java.io.*;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class ClientTest {
+
     @Test
     void setName_success() {
         String name = "testName";
@@ -15,6 +20,7 @@ class ClientTest {
         PrintWriter out = new PrintWriter(output);
         Client client = new Client(new Settings());
         client.setName(scanner, out);
+
         System.setIn(System.in);
 
         assertThat(client.getName()).isEqualTo(name);
